@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styles from "./Home.module.css";
+import jsPDF from "jspdf";
+import emailjs from "emailjs-com";
 
 export const Home = () => {
   const opcoesMaterial = ["", "SOLAS", "PALMILHAS", "TACOES"];
@@ -8,6 +10,10 @@ export const Home = () => {
   const opcoesDificuldade = ["", "A", "B", "C"];
   const [escolhaDificuldade, setEscolhaDificuldade] = useState("");
 
+  const [quantidade, setQuantidade] = useState(0);
+  const [referencia, setReferencia] = useState("");
+  const [observacoes, setObservacoes] = useState("");
+
   const handleEscolhaMaterial = (e) => {
     setEscolhaMaterial(e.target.value);
   };
@@ -15,6 +21,20 @@ export const Home = () => {
   const handleEscolhaDificuldade = (e) => {
     setEscolhaDificuldade(e.target.value);
   };
+
+  const handleQuantidadeChange = (e) => {
+    setQuantidade(e.target.value);
+  };
+
+  const handleReferenciaChange = (e) => {
+    setReferencia(e.target.value);
+  };
+
+  const handleObservacoesChange = (e) => {
+    setObservacoes(e.target.value);
+  };
+
+  
 
   return (
     <div className={styles.home}>
