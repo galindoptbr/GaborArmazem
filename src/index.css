@@ -1,0 +1,121 @@
+/* Reset CSS */
+
+/* Box sizing border-box reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Margin and padding reset */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+li,
+dd,
+dt,
+blockquote,
+figure,
+fieldset,
+legend,
+input,
+textarea,
+button,
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+/* Typography reset */
+body,
+button,
+input,
+select,
+textarea {
+  font-family: "Roboto", sans-serif;
+}
+
+/* List style reset */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Reset hyperlink styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Reset form element styles */
+button,
+input,
+select,
+textarea {
+  background: none;
+  border: none;
+  outline: none;
+  appearance: none;
+}
+
+/* Reset button styles */
+button {
+  cursor: pointer;
+}
+
+/* Reset images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reset table styles */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Reset blockquote styles */
+blockquote,
+q {
+  quotes: none;
+}
+
+/* Reset quote styles */
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: "";
+  content: none;
+}
+
+/* Reset media element styles */
+audio,
+canvas,
+iframe,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+/* Global styles */
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #F2F2F2;
+  color: #272829;
+  font-family: "Roboto", sans-serif;
+}
+
+button:disabled {
+  background-color: #272829;
+}
