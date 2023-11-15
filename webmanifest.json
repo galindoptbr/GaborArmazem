@@ -1,0 +1,21 @@
+{
+  "name": "Armazém",
+  "short_name": "Armazém",
+  "start_url": "https://gabor-armazem.vercel.app/",
+  "icons": [
+    {
+      "src": "./src/assets/Images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./src/assets/Images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#0D0D0D",
+  "theme_color": "#0D0D0D",
+  "orientation": "portrait",
+  "display": "standalone"
+}
