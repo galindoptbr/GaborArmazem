@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import styles from "./Home.module.css";
-import jsPDF from "jspdf";
-import emailjs from "@emailjs/browser";
+import { jsPDF } from "jspdf";
 
 export const Home = () => {
   const opcoesMaterial = ["", "SOLAS", "PALMILHAS", "TACOES"];
@@ -10,7 +9,7 @@ export const Home = () => {
   const opcoesDificuldade = ["", "A", "B", "C"];
   const [escolhaDificuldade, setEscolhaDificuldade] = useState("");
 
-  const [quantidade, setQuantidade] = useState(0);
+  const [quantidade, setQuantidade] = useState("");
   const [referencia, setReferencia] = useState("");
   const [observacoes, setObservacoes] = useState("");
 
@@ -37,42 +36,59 @@ export const Home = () => {
   };
 
   const generatePDF = () => {
-    const doc = new jsPDF();
-    doc.text(20, 20, `Material: ${escolhaMaterial}`);
-    doc.text(20, 30, `Referência: ${referencia}`);
-    doc.text(20, 40, `Dificuldade: ${escolhaDificuldade}`);
-    doc.text(20, 50, `QUantodade: ${quantidade}`);
-    doc.text(20, 60, `Observações: ${observacoes}`);
+    return new Promise((resolve) => {
+      const doc = new jsPDF();
+      doc.text(`Material: ${escolhaMaterial}`, 10, 10);
+      doc.text(`Referência: ${referencia}`, 10, 20);
+      doc.text(`Dificuldade: ${escolhaDificuldade}`, 10, 30);
+      doc.text(`Quantidade: ${quantidade}`, 10, 40);
+      doc.text(`Observações: ${observacoes}`, 10, 50);
+      const pdfOutput = doc.output();
+      doc.save("a4.pdf");
 
-    return doc.output();
+      resolve(pdfOutput);
+    });
   };
 
-  const sendEmailWithPDF = (e) => {
-    e.preventDefault();
+  const sendEmailWithAttachment = async () => {
     const pdfOutput = generatePDF();
 
     const emailData = {
-      to_email: "adsandro.galindo@gmail.com",
-      from_name: "Armazem",
+      to: "adsandro.galindo@gmail.com",
+      from: "galindoleitept@gmail.com",
       subject: "Partidas do dia",
-      message: "Corpo do email",
-      attachment: new Blob([pdfOutput], { type: "application/pdf" }),
+      text: "Corpo do email",
+      attachment: await pdfOutput,
     };
 
-    emailjs
-      .sendForm(
-        "service_ys23w05",
-        "template_c4bxjo9",
-        form.current,
-        "bpPs98Htqb071c2yA",
-        emailData
-      )
-      .then((result) => {
-        console.log("Emial enviado com sucesso!", result.text);
-      })
-      .catch((error) => {
-        console.error("Erro ao envair o email:", error.text);
+    const api_key =
+      "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";
+    const sendgrid_api = "https://api.sendgrid.com/v3/mail/send";
+
+    const formData = new FormData();
+    formData.append("to", emailData.to);
+    formData.append("from", emailData.from);
+    formData.append("subject", emailData.subject);
+    formData.append("text", emailData.text);
+    formData.append("attachment", emailData.attachment, "a4.pdf");
+
+    try {
+      const response = await fetch(sendgrid_api, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${api_key}`,
+        },
+        body: formData,
       });
+
+      if (response.ok) {
+        console.log("Email enviado com sucesso!");
+      } else {
+        console.error("Falha ao enviar o email:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Erro ao enviar o email:", error);
+    }
   };
 
   return (
@@ -86,7 +102,7 @@ export const Home = () => {
         <p>15/11/2023</p>
       </div>
       <div className={styles.formContainer}>
-        <form ref={form} onSubmit={sendEmailWithPDF}>
+        <form ref={form} onSubmit={sendEmailWithAttachment}>
           <div className={styles.material}>
             <label>Material</label>
             <select value={escolhaMaterial} onChange={handleEscolhaMaterial}>
