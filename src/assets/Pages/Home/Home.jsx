@@ -95,11 +95,11 @@ export const Home = () => {
     <div className={styles.home}>
       <div className={styles.headerHome}>
         <h1>Gabor</h1>
-        <p>Armazem</p>
+        <p>Armazém</p>
       </div>
       <div className={styles.infoPerson}>
         <h2>Adsandro Galindo</h2>
-        <p>15/11/2023</p>
+        <p>16/11/2023</p>
       </div>
       <div className={styles.formContainer}>
         <form ref={form} onSubmit={sendEmailWithAttachment}>
@@ -114,7 +114,7 @@ export const Home = () => {
             </select>
           </div>
           <div className={styles.referencia}>
-            <label>Referencia</label>
+            <label>Referência</label>
             <input
               type="text"
               value={referencia}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 .headerHome {
     display: flex;
     justify-content: center;
@@ -10,7 +12,7 @@
     color: #F2F2F2;
     margin-bottom: -10px;
     margin-top: 10px;
-
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .headerHome p {
@@ -87,7 +89,8 @@
 .dificuldade label,
 .referencia label,
 .quantidade label {
-    font-size: 12px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .material select,
@@ -95,9 +98,9 @@
 .referencia input,
 .quantidade input {
     background-color: #BFBFBF;
-    padding: 7px;
+    padding: 10px;
     border-radius: 3px;
-    width: 100px;
+    width: 120px;
 }
 
 .observacoes {
@@ -116,6 +119,9 @@
     margin-top: .5em;
     resize: none;
 }
+.observacoes textarea::placeholder {
+    font-size: 16px;
+}
 
 .btn {
     display: flex;
@@ -123,9 +129,10 @@
     align-items: center;
     background-color: #262626;
     font-weight: 600;
+    font-size: 20px;
     color: #ffff;
     padding: 10px;
-    border-radius: 3px;
-    width: 100px;
+    border-radius: 20px;
+    width: 150px;
     margin: 2em auto;
 }
