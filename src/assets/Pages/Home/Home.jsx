@@ -2,7 +2,7 @@ import styles from "./Home.module.css";
 import { useRef, useState } from "react";
 import { jsPDF } from "jspdf";
 import logoGabor from "../../Images/logo-gabor.png";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { BsCalendarWeek, BsFilePerson } from "react-icons/bs";
@@ -139,7 +139,7 @@ export const Home = () => {
             className={styles.btnShowCalendar}
             onClick={handleShowCalendar}
           >
-            <BsCalendarWeek size={15} />
+            <BsCalendarWeek size={20} />
           </button>
           {showCalendar && (
             <Calendar onChange={handleDataChange} value={selectDate} />
