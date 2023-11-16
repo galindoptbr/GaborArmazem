@@ -41,7 +41,7 @@
     justify-content: center;
     align-items: center;
     margin-left: 10px;
-    margin-top: 2em;
+    margin-top: .5em;
     flex-wrap: wrap;
     background-color: #ffff;
     padding: 10px 0 20px;
@@ -123,7 +123,7 @@
     font-weight: 600;
 }
 .observacoes textarea::placeholder {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .btn {
