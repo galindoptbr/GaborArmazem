@@ -183,10 +183,10 @@ export const Home = () => {
               />
             </div>
           </div>
-          <div className={styles.observacoes}>
+                    <div className={styles.observacoes}>
             <p>Outros trabalhos</p>
             <textarea
-              placeholder="O que fez alem das partidas?"
+              placeholder="O que fez além das partidas?"
               cols="30"
               rows="7"
               value={observacoes}

@@ -31,9 +31,6 @@
 }
 
 .btnShowCalendar {
-    position: absolute;
-    right: 30%;
-    bottom: 81%;
     color: #0D0D0D;
     padding: 5px;
     border-radius: 3px;
