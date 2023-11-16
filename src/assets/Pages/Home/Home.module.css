@@ -8,17 +8,9 @@
     background-color: #0D0D0D;
 }
 
-.headerHome h1 {
-    color: #F2F2F2;
-    margin-bottom: -10px;
-    margin-top: 10px;
-    font-family: 'Ubuntu', sans-serif;
-}
-
-.headerHome p {
-    font-style: italic;
-    color: #F2F2F2;
-    margin-bottom: 10px;
+.headerHome img {
+    width: 150px;
+    padding: 10px;
 }
 
 .infoPerson {
@@ -38,7 +30,16 @@
     font-style: italic;
 }
 
-.formContainer form {
+.btnShowCalendar {
+    position: absolute;
+    right: 30%;
+    bottom: 81%;
+    color: #0D0D0D;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.boxOpcoes {
     display: flex;
     justify-content: center;
     align-items: center;

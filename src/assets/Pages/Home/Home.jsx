@@ -1,9 +1,28 @@
-import { useRef, useState } from "react";
 import styles from "./Home.module.css";
+import { useRef, useState } from "react";
 import { jsPDF } from "jspdf";
+import logoGabor from "../../Images/logo-gabor.png";
+import { useLocation } from "react-router-dom";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import { BsCalendarWeek } from "react-icons/bs";
 
 export const Home = () => {
-  const opcoesMaterial = ["", "SOLAS", "PALMILHAS", "TACOES"];
+  const location = useLocation();
+  const { state } = location;
+  const name = state && state.name ? state.name : "Usuário";
+
+  const [selectDate, setSelectDate] = useState(new Date());
+  const [showCalendar, setShowCalendar] = useState(false);
+
+  const opcoesMaterial = [
+    "",
+    "SOLAS",
+    "PALMILHAS Acab",
+    "PALMILHAS Mont",
+    "TACOES",
+    "CUNHAS",
+  ];
   const [escolhaMaterial, setEscolhaMaterial] = useState("");
 
   const opcoesDificuldade = ["", "A", "B", "C"];
@@ -14,6 +33,14 @@ export const Home = () => {
   const [observacoes, setObservacoes] = useState("");
 
   const form = useRef();
+
+  const handleShowCalendar = () => {
+    setShowCalendar(!showCalendar);
+  };
+
+  const handleDataChange = (date) => {
+    setSelectDate(date);
+  };
 
   const handleEscolhaMaterial = (e) => {
     setEscolhaMaterial(e.target.value);
@@ -38,11 +65,13 @@ export const Home = () => {
   const generatePDF = () => {
     return new Promise((resolve) => {
       const doc = new jsPDF();
-      doc.text(`Material: ${escolhaMaterial}`, 10, 10);
-      doc.text(`Referência: ${referencia}`, 10, 20);
-      doc.text(`Dificuldade: ${escolhaDificuldade}`, 10, 30);
-      doc.text(`Quantidade: ${quantidade}`, 10, 40);
-      doc.text(`Observações: ${observacoes}`, 10, 50);
+      doc.text(`${name}`, 10, 10);
+      doc.text(`Dia: ${selectDate.toLocaleDateString()}`, 10, 20);
+      doc.text(`Material: ${escolhaMaterial}`, 10, 30);
+      doc.text(`Referência: ${referencia}`, 10, 40);
+      doc.text(`Dificuldade: ${escolhaDificuldade}`, 10, 50);
+      doc.text(`Quantidade: ${quantidade}`, 10, 60);
+      doc.text(`Observações: ${observacoes}`, 10, 70);
       const pdfOutput = doc.output();
       doc.save("a4.pdf");
 
@@ -94,53 +123,65 @@ export const Home = () => {
   return (
     <div className={styles.home}>
       <div className={styles.headerHome}>
-        <h1>Gabor</h1>
-        <p>Armazém</p>
+        <img src={logoGabor} alt="logo da gabor" />
       </div>
       <div className={styles.infoPerson}>
-        <h2>Adsandro Galindo</h2>
-        <p>16/11/2023</p>
+        <h2>{name}</h2>
+        <p>{selectDate.toLocaleDateString()}</p>
+        <div>
+          <button
+            className={styles.btnShowCalendar}
+            onClick={handleShowCalendar}
+          >
+            <BsCalendarWeek size={15} />
+          </button>
+          {showCalendar && (
+            <Calendar onChange={handleDataChange} value={selectDate} />
+          )}
+        </div>
       </div>
       <div className={styles.formContainer}>
         <form ref={form} onSubmit={sendEmailWithAttachment}>
-          <div className={styles.material}>
-            <label>Material</label>
-            <select value={escolhaMaterial} onChange={handleEscolhaMaterial}>
-              {opcoesMaterial.map((opcao, index) => (
-                <option value={opcao} key={index}>
-                  {opcao}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className={styles.referencia}>
-            <label>Referência</label>
-            <input
-              type="text"
-              value={referencia}
-              onChange={handleReferenciaChange}
-            />
-          </div>
-          <div className={styles.dificuldade}>
-            <label>Dificuldade</label>
-            <select
-              value={escolhaDificuldade}
-              onChange={handleEscolhaDificuldade}
-            >
-              {opcoesDificuldade.map((opcao, index) => (
-                <option value={opcao} key={index}>
-                  {opcao}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className={styles.quantidade}>
-            <label>Quantidade</label>
-            <input
-              type="number"
-              value={quantidade}
-              onChange={handleQuantidadeChange}
-            />
+          <div className={styles.boxOpcoes}>
+            <div className={styles.material}>
+              <label>Material</label>
+              <select value={escolhaMaterial} onChange={handleEscolhaMaterial}>
+                {opcoesMaterial.map((opcao, index) => (
+                  <option value={opcao} key={index}>
+                    {opcao}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.referencia}>
+              <label>Referência</label>
+              <input
+                type="text"
+                value={referencia}
+                onChange={handleReferenciaChange}
+              />
+            </div>
+            <div className={styles.dificuldade}>
+              <label>Dificuldade</label>
+              <select
+                value={escolhaDificuldade}
+                onChange={handleEscolhaDificuldade}
+              >
+                {opcoesDificuldade.map((opcao, index) => (
+                  <option value={opcao} key={index}>
+                    {opcao}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.quantidade}>
+              <label>Quantidade</label>
+              <input
+                type="number"
+                value={quantidade}
+                onChange={handleQuantidadeChange}
+              />
+            </div>
           </div>
           <div className={styles.observacoes}>
             <p>Outros trabalhos</p>
