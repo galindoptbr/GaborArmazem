@@ -119,9 +119,11 @@
     width: 90vw;
     margin-top: .5em;
     resize: none;
+    font-size: 18px;
+    font-weight: 600;
 }
 .observacoes textarea::placeholder {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .btn {
