@@ -9,7 +9,7 @@
 
 .login img {
     width: 200px;
-    margin-bottom: 150px;
+    margin-bottom: 50px;
 }
 
 .formContainer form {
@@ -17,7 +17,7 @@
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    margin-bottom: 150px;
+    margin-bottom: 100px;
 }
 
 .formContainer label {
