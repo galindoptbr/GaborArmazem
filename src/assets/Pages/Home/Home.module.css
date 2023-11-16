@@ -10,7 +10,7 @@
 
 .headerHome img {
     width: 150px;
-    padding: 10px;
+    padding: 15px;
 }
 
 .infoPerson {
@@ -99,6 +99,8 @@
     padding: 10px;
     border-radius: 3px;
     width: 120px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .observacoes {
@@ -133,4 +135,20 @@
     border-radius: 20px;
     width: 150px;
     margin: 2em auto;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    background-color: #0D0D0D;
+    height: 20vh;
+    color: #ffff;
+}
+
+.iconLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 90px;
 }

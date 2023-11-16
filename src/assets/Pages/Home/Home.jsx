@@ -2,10 +2,10 @@ import styles from "./Home.module.css";
 import { useRef, useState } from "react";
 import { jsPDF } from "jspdf";
 import logoGabor from "../../Images/logo-gabor.png";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { BsCalendarWeek } from "react-icons/bs";
+import { BsCalendarWeek, BsFilePerson } from "react-icons/bs";
 
 export const Home = () => {
   const location = useLocation();
@@ -31,6 +31,8 @@ export const Home = () => {
   const [quantidade, setQuantidade] = useState("");
   const [referencia, setReferencia] = useState("");
   const [observacoes, setObservacoes] = useState("");
+
+  const navigate = useNavigate();
 
   const form = useRef();
 
@@ -60,6 +62,10 @@ export const Home = () => {
 
   const handleObservacoesChange = (e) => {
     setObservacoes(e.target.value);
+  };
+
+  const handleLogin = () => {
+    navigate("/");
   };
 
   const generatePDF = () => {
@@ -183,7 +189,7 @@ export const Home = () => {
               />
             </div>
           </div>
-                    <div className={styles.observacoes}>
+          <div className={styles.observacoes}>
             <p>Outros trabalhos</p>
             <textarea
               placeholder="O que fez além das partidas?"
@@ -197,6 +203,12 @@ export const Home = () => {
             Enviar
           </button>
         </form>
+      </div>
+      <div className={styles.footer}>
+        <span onClick={handleLogin} className={styles.iconLogin}>
+          <BsFilePerson size={25} />
+          Login
+        </span>
       </div>
     </div>
   );
