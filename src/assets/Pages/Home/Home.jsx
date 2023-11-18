@@ -75,7 +75,7 @@ export const Home = () => {
   };
 
   const generatePDF = () => {
-    return new Promise((resolve) => {
+    return new Promise(() => {
       const doc = new jsPDF();
       doc.text(`${name}`, 10, 10);
       doc.text(`Dia: ${selectDate.toLocaleDateString()}`, 10, 20);
