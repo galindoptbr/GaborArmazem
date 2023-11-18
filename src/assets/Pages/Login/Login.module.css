@@ -49,3 +49,7 @@
     width: 150px;
     margin: 3em auto;
 }
+
+.erroLogin {
+    color: red;
+}

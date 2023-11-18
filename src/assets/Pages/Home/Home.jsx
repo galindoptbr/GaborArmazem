@@ -175,7 +175,7 @@ export const Home = () => {
             ></textarea>
           </div>
           <button type="submit" className={styles.btn}>
-            Enviar
+            Gerar PDF
           </button>
         </form>
       </div>
