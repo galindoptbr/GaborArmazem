@@ -18,18 +18,20 @@ export const Home = () => {
   const opcoesMaterial = [
     "",
     "SOLAS",
-    "PALMILHAS Acab",
-    "PALMILHAS Mont",
     "TACOES",
-    "CUNHAS",
+    "CAPAS",
+    "PLATEAU",
+    "Palm. Mont",
+    "Palm. Acab",
   ];
-  const [escolhaMaterial, setEscolhaMaterial] = useState("");
+  const opcoesDificuldade = ["", "A", "B", "C", "A e B", "A e C", "B e C"];
 
-  const opcoesDificuldade = ["", "A", "B", "C"];
+  const [escolhaMaterial, setEscolhaMaterial] = useState("");
   const [escolhaDificuldade, setEscolhaDificuldade] = useState("");
 
-  const [quantidade, setQuantidade] = useState("");
   const [referencia, setReferencia] = useState("");
+  const [quantidade, setQuantidade] = useState("");
+  const [total, setTotal] = useState("");
   const [observacoes, setObservacoes] = useState("");
 
   const navigate = useNavigate();
@@ -56,6 +58,10 @@ export const Home = () => {
     setQuantidade(e.target.value);
   };
 
+  const handleTotalChange = (e) => {
+    setTotal(e.target.value);
+  };
+
   const handleReferenciaChange = (e) => {
     setReferencia(e.target.value);
   };
@@ -74,10 +80,11 @@ export const Home = () => {
       doc.text(`${name}`, 10, 10);
       doc.text(`Dia: ${selectDate.toLocaleDateString()}`, 10, 20);
       doc.text(`Material: ${escolhaMaterial}`, 10, 30);
-      doc.text(`Referência: ${referencia}`, 10, 40);
-      doc.text(`Dificuldade: ${escolhaDificuldade}`, 10, 50);
+      doc.text(`Dificuldade: ${escolhaDificuldade}`, 10, 40);
+      doc.text(`Referência: ${referencia}`, 10, 50);
       doc.text(`Quantidade: ${quantidade}`, 10, 60);
-      doc.text(`Observações: ${observacoes}`, 10, 70);
+      doc.text(`Total: ${total}`, 10, 70);
+      doc.text(`Observações: ${observacoes}`, 10, 80);
       const pdfOutput = doc.output();
       doc.save("a4.pdf");
 
@@ -85,19 +92,26 @@ export const Home = () => {
     });
   };
 
-  const sendEmailWithAttachment = async () => {
-    const pdfOutput = generatePDF();
+  const handleSubmit = async () => {
+    const pdfOutput = await generatePDF();
 
     const emailData = {
       to: "adsandro.galindo@gmail.com",
       from: "galindoleitept@gmail.com",
       subject: "Partidas do dia",
       text: "Corpo do email",
-      attachment: await pdfOutput,
+      attachments: [
+        {
+          content: pdfOutput,
+          filename: "a4.pdf",
+          type: "application/pdf",
+          disposition: "attachment",
+        },
+      ],
     };
 
     const api_key =
-      "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";
+"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";
     const sendgrid_api = "https://api.sendgrid.com/v3/mail/send";
 
     const formData = new FormData();
@@ -105,7 +119,7 @@ export const Home = () => {
     formData.append("from", emailData.from);
     formData.append("subject", emailData.subject);
     formData.append("text", emailData.text);
-    formData.append("attachment", emailData.attachment, "a4.pdf");
+    formData.append("attachment", emailData.attachments);
 
     try {
       const response = await fetch(sendgrid_api, {
@@ -147,7 +161,7 @@ export const Home = () => {
         </div>
       </div>
       <div className={styles.formContainer}>
-        <form ref={form} onSubmit={sendEmailWithAttachment}>
+        <form ref={form} onSubmit={handleSubmit}>
           <div className={styles.boxOpcoes}>
             <div className={styles.material}>
               <label>Material</label>
@@ -158,14 +172,6 @@ export const Home = () => {
                   </option>
                 ))}
               </select>
-            </div>
-            <div className={styles.referencia}>
-              <label>Referência</label>
-              <input
-                type="text"
-                value={referencia}
-                onChange={handleReferenciaChange}
-              />
             </div>
             <div className={styles.dificuldade}>
               <label>Dificuldade</label>
@@ -180,13 +186,26 @@ export const Home = () => {
                 ))}
               </select>
             </div>
+            <div className={styles.referencia}>
+              <label>Referência</label>
+              <input
+                type="text"
+                value={referencia}
+                onChange={handleReferenciaChange}
+              />
+            </div>
+
             <div className={styles.quantidade}>
               <label>Quantidade</label>
               <input
-                type="number"
+                type="text"
                 value={quantidade}
                 onChange={handleQuantidadeChange}
               />
+            </div>
+            <div className={styles.total}>
+              <label>Total</label>
+              <input type="text" value={total} onChange={handleTotalChange} />
             </div>
           </div>
           <div className={styles.observacoes}>
@@ -194,7 +213,7 @@ export const Home = () => {
             <textarea
               placeholder="O que fez além das partidas?"
               cols="30"
-              rows="7"
+              rows="5"
               value={observacoes}
               onChange={handleObservacoesChange}
             ></textarea>
