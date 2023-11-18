@@ -92,52 +92,8 @@ export const Home = () => {
     });
   };
 
-  const handleSubmit = async () => {
-    const pdfOutput = await generatePDF();
-
-    const emailData = {
-      to: "adsandro.galindo@gmail.com",
-      from: "galindoleitept@gmail.com",
-      subject: "Partidas do dia",
-      text: "Corpo do email",
-      attachments: [
-        {
-          content: pdfOutput,
-          filename: "a4.pdf",
-          type: "application/pdf",
-          disposition: "attachment",
-        },
-      ],
-    };
-
-    const api_key =
-"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";
-    const sendgrid_api = "https://api.sendgrid.com/v3/mail/send";
-
-    const formData = new FormData();
-    formData.append("to", emailData.to);
-    formData.append("from", emailData.from);
-    formData.append("subject", emailData.subject);
-    formData.append("text", emailData.text);
-    formData.append("attachment", emailData.attachments);
-
-    try {
-      const response = await fetch(sendgrid_api, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${api_key}`,
-        },
-        body: formData,
-      });
-
-      if (response.ok) {
-        console.log("Email enviado com sucesso!");
-      } else {
-        console.error("Falha ao enviar o email:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Erro ao enviar o email:", error);
-    }
+  const handleSubmit = () => {
+    generatePDF();
   };
 
   return (
