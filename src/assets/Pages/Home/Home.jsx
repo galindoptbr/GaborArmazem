@@ -85,10 +85,10 @@ export const Home = () => {
       doc.text(`Quantidade: ${quantidade}`, 10, 60);
       doc.text(`Total: ${total}`, 10, 70);
       doc.text(`Observações: ${observacoes}`, 10, 80);
-      const pdfOutput = doc.output();
+      
       doc.save("a4.pdf");
 
-      resolve(pdfOutput);
+      
     });
   };
 
