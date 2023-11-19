@@ -13,7 +13,7 @@ export const Login = () => {
     if (password === "gabor123") {
       navigate("/home", { state: { name } });
     } else {
-      setError("Senha incorreta");
+      setError("Palavra-passe incorreta");
     }
   };
 
@@ -32,7 +32,7 @@ export const Login = () => {
         <div className={styles.inputLogin}>
           <label>Nome</label>
           <input type="text" value={name} onChange={handleNameChange} />
-          <label>Senha</label>
+          <label>Palavra-passe</label>
           <input
             type="password"
             value={password}
