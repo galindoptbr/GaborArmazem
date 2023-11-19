@@ -86,7 +86,7 @@ export const Home = () => {
       doc.text(`Total: ${total}`, 10, 70);
       doc.text(`Outros trabalhos: ${observacoes}`, 10, 80);
 
-      doc.save("a4.pdf");
+      doc.save(`${name}.pdf`);
 
       navigate("/");
     });
