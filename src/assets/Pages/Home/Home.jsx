@@ -84,7 +84,7 @@ export const Home = () => {
       doc.text(`Referência: ${referencia}`, 10, 50);
       doc.text(`Quantidade: ${quantidade}`, 10, 60);
       doc.text(`Total: ${total}`, 10, 70);
-      doc.text(`Observações: ${observacoes}`, 10, 80);
+      doc.text(`Outros trabalhos: ${observacoes}`, 10, 80);
 
       doc.save("a4.pdf");
 
