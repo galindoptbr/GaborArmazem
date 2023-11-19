@@ -24,7 +24,7 @@ export const Home = () => {
     "Palm. Mont",
     "Palm. Acab",
   ];
-  const opcoesDificuldade = ["", "A", "B", "C", "A e B", "A e C", "B e C"];
+  const opcoesDificuldade = ["", "A", "B", "C", "A e B", "A e C", "B e C", "A, B e C"];
 
   const [escolhaMaterial, setEscolhaMaterial] = useState("");
   const [escolhaDificuldade, setEscolhaDificuldade] = useState("");
