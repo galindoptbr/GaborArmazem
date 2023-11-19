@@ -86,7 +86,7 @@ export const Home = () => {
       doc.text(`Total: ${total}`, 10, 70);
       doc.text(`Outros trabalhos: ${observacoes}`, 10, 80);
 
-      doc.save(`${name}.pdf`);
+      doc.save(`${name}-${selectDate.toLocaleDateString()}.pdf`);
 
       navigate("/");
     });
