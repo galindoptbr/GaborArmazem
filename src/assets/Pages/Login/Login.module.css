@@ -12,12 +12,12 @@
     margin-bottom: 50px;
 }
 
-.formContainer form {
+.inputLogin {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
 }
 
 .formContainer label {
@@ -47,9 +47,17 @@
     padding: 10px;
     border-radius: 20px;
     width: 150px;
-    margin: 3em auto;
+    margin: 2em auto;
 }
 
-.erroLogin {
-    color: red;
+.error {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid rgb(173, 69, 69);
+    background-color: rgb(107, 34, 34);
+    color: #ffff;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
 }

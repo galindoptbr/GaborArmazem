@@ -7,12 +7,13 @@ export const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handlePasswordSubmit = () => {
     if (password === "gabor123") {
       navigate("/home", { state: { name } });
     } else {
-      console.log("Senha incorreta");
+      setError("Senha incorreta");
     }
   };
 
@@ -28,7 +29,7 @@ export const Login = () => {
     <div className={styles.login}>
       <img src={logoGabor} alt="logotipo da gabor" />
       <div className={styles.formContainer}>
-        <form>
+        <div className={styles.inputLogin}>
           <label>Nome</label>
           <input type="text" value={name} onChange={handleNameChange} />
           <label>Senha</label>
@@ -37,10 +38,11 @@ export const Login = () => {
             value={password}
             onChange={handlePasswordChange}
           />
+        </div>
           <button className={styles.btn} onClick={handlePasswordSubmit}>
             Entrar
           </button>
-        </form>
+          {error && <p className={styles.error}>{error}</p>}
       </div>
     </div>
   );
