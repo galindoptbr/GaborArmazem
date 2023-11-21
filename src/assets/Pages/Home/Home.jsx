@@ -182,7 +182,7 @@ export const Home = () => {
       <div className={styles.footer}>
         <span onClick={handleLogin} className={styles.iconLogin}>
           <BsFilePerson size={25} />
-          Login
+          Logout
         </span>
       </div>
     </div>
